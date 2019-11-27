@@ -5,4 +5,4 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface VeiculoRepository : CrudRepository<VeiculoModel, Long>
+interface VeiculoRepository : CrudRepository<VeiculoModel, Int>

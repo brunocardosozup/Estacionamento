@@ -1,11 +1,9 @@
 package com.br.project.models
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
+import javax.persistence.*
 
 import javax.validation.constraints.NotBlank
 
@@ -16,16 +14,17 @@ data class VeiculoModel (
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val placa: Int,
+    @Column(name = "id", updatable = false, nullable = false)
+    var id : Int,
 
     @NotBlank(message = "Campo automovel obrigatório")
-    val automovel: String,
+    var automovel : String,
 
     @NotBlank(message = "Campo cor obrigatório")
-     val cor: String,
+     var cor: String,
 
     @NotBlank(message = "Campo modelo obrigatório")
-    val modelo: String
+    var modelo: String
 
 
 
