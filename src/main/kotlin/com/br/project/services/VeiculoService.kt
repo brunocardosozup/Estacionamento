@@ -22,20 +22,20 @@ class VeiculoService(var veiculorepository: VeiculoRepository) {
         return veiculorepository.save(veiculoModel)
     }
 
-    fun findById(id: Int): VeiculoModel {
-        return veiculorepository.findById(id).get()
-
-    }
+//    fun findById(id: Int): VeiculoModel {
+//        return veiculorepository.findById(id).get()
+//
+//    }
 
 
     fun deleteById(id: Int){
         veiculorepository.deleteById(id)
     }
 
-    fun alterById(@PathVariable id: Int, @RequestBody veiculoModel: VeiculoModel) : ResponseEntity<VeiculoModel> {
-        veiculorepository.findById(id)
-        return ResponseEntity.ok(veiculoModel)
-    }
+//    fun alterById(@PathVariable id: Int, @RequestBody veiculoModel: VeiculoModel) : ResponseEntity<VeiculoModel> {
+//        veiculorepository.findById(id)
+//        return ResponseEntity.ok(veiculoModel)
+//    }
 
 }
 

@@ -32,16 +32,16 @@ open class VeiculoController(var veiculoService: VeiculoService) {
 
 
 
-    @GetMapping("/{id}")
-   fun pegarporID(@PathVariable  id: Int){
-      if(veiculoRepository.existsById(id)){
-         veiculoService.findById(id)
-
-      } else{
-          println("ID NÃO ENCONTRADO, TENTE NOVAMENTE!!!")
-      }
-
-    }
+//    @GetMapping("/{id}")
+//   fun pegarporID(@PathVariable  id: Int){
+//      if(veiculoRepository.existsById(id)){
+//         veiculoService.findById(id)
+//
+//      } else{
+//          println("ID NÃO ENCONTRADO, TENTE NOVAMENTE!!!")
+//      }
+//
+//    }
 
 
 @DeleteMapping("/{id}")
