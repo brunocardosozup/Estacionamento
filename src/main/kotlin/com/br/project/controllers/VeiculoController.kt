@@ -65,4 +65,6 @@ if(veiculoRepository.existsById(id)){
     }
 
 
+    @GetMapping("qtd")
+    fun qtd() = veiculoService.count()
 }

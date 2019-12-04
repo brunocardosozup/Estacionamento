@@ -46,6 +46,10 @@ class VeiculoService(var veiculorepository: VeiculoRepository) {
     }
     //
 
+
+    fun count() : Long{
+        return veiculorepository.count()
+    }
 }
 
 
