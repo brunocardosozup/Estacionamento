@@ -4,7 +4,11 @@ import com.br.project.models.VeiculoModel
 import com.br.project.repositories.VeiculoRepository
 import com.br.project.services.VeiculoService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.jpa.domain.AbstractPersistable_.id
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.http.ResponseCookie
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 
@@ -15,7 +19,6 @@ open class VeiculoController(var veiculoService: VeiculoService) {
 
   @Autowired
     lateinit var veiculoRepository: VeiculoRepository
-
 
 
 
@@ -32,16 +35,16 @@ open class VeiculoController(var veiculoService: VeiculoService) {
 
 
 
-//    @GetMapping("/{id}")
-//   fun pegarporID(@PathVariable  id: Int){
-//      if(veiculoRepository.existsById(id)){
-//         veiculoService.findById(id)
-//
-//      } else{
-//          println("ID NÃO ENCONTRADO, TENTE NOVAMENTE!!!")
-//      }
-//
-//    }
+    @GetMapping("/{id}")
+
+   fun pegarporID(@PathVariable  id: Int) : ResponseEntity<VeiculoModel>{
+        try {
+            return ResponseEntity.ok().body(veiculoService.findById(id))
+        }catch (e : Exception){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+        }
+    }
+
 
 
 @DeleteMapping("/{id}")
@@ -52,7 +55,14 @@ fun delete(@PathVariable id : Int){
 }
 
 
-    /////////////////////////////////////////////////////////////////
+    @PutMapping("/{id}")
+    fun alterToId(@PathVariable id : Int, @RequestBody veiculoModel: VeiculoModel): VeiculoModel {
+if(veiculoRepository.existsById(id)){
+    var veiculo = VeiculoModel(id, veiculoModel.automovel, veiculoModel.cor, veiculoModel.modelo)
+    return veiculoRepository.save(veiculo)
+}
+        return veiculoModel
+    }
 
 
 }
