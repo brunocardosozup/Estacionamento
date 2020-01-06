@@ -22,7 +22,7 @@ open class VeiculoController(var veiculoService: VeiculoService) {
 
 
 
-    @GetMapping("/find", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @GetMapping("/find")
    private fun findAllCars() = veiculoService.getVeiculos().toList()
 
 
