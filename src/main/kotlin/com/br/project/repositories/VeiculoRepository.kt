@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface VeiculoRepository : CrudRepository<VeiculoModel, Int>
+interface VeiculoRepository : CrudRepository<VeiculoModel, Int> {
+    fun findAll(veiculoModel: VeiculoModel): MutableIterable<VeiculoModel>
+}

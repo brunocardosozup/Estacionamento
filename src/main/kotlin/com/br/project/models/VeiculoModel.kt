@@ -27,8 +27,6 @@ data class VeiculoModel (
     var modelo: String
 
 
-
-
 )
 
 
