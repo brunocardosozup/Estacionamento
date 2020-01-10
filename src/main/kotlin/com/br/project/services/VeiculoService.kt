@@ -14,8 +14,8 @@ import javax.persistence.Column
 @Service
 class VeiculoService(var veiculorepository: VeiculoRepository) {
 
-    fun getVeiculos(): MutableIterable<VeiculoModel> {
-        return veiculorepository.findAll()
+    fun findAll(): kotlin.collections.List<VeiculoModel> {
+        return veiculorepository.findAll().toList()
     }
 
     fun saveVeiculos(veiculoModel: VeiculoModel): VeiculoModel {

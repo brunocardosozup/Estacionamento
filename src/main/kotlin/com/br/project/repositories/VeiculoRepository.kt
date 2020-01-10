@@ -6,5 +6,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface VeiculoRepository : CrudRepository<VeiculoModel, Int> {
-    fun findAll(veiculoModel: VeiculoModel): MutableIterable<VeiculoModel>
+    fun findAll(veiculoModel: VeiculoModel): MutableIterable<VeiculoModel> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }

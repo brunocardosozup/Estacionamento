@@ -23,7 +23,7 @@ open class VeiculoController(var veiculoService: VeiculoService) {
 
 
     @GetMapping("/find")
-   private fun findAllCars() = veiculoService.getVeiculos().toList()
+   private fun findAllCars() = veiculoService.findAll().toList()
 
 
 

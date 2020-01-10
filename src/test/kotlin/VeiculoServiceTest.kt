@@ -3,9 +3,8 @@ import com.br.project.repositories.VeiculoRepository
 import com.br.project.services.VeiculoService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.mockito.BDDMockito
 import org.mockito.Mockito
-import org.mockito.internal.configuration.injection.MockInjection
+
 
 import java.util.*
 
@@ -39,7 +38,7 @@ class VeiculoServiceTest {
     @Test
 
     // SALVAR MEU VEICULO
-    fun `save my veiculo`(){
+    fun `save my veiculo`() {
 
         val id = 12
         val veiculoModel = VeiculoModel(
@@ -63,8 +62,30 @@ class VeiculoServiceTest {
 
     @Test
 
+    fun `find all veiculos`() {
+
+        val id = 1
+        val veiculoModel = VeiculoModel(
+
+                id = id,
+                automovel = "motocicleta",
+                cor = "yellow",
+                modelo = "bis"
+        )
+        Mockito.`when`(veiculoRepository.findAll()).thenReturn(listOf(veiculoModel))
+
+        val res = veiculoService.findAll()
+
+        assertEquals(id, res[0].id)
+        assertEquals("motocicleta", res[0].automovel)
+        assertEquals("yellow", res[0].cor)
+        assertEquals("bis", res[0].modelo)
+    }
+
+    @Test
+
     // DELETAR VEICULO POR ID
-    fun `Delete veiculo for id`(){
+    fun `Delete veiculo for id`() {
 
         val id = 123
         val veiculoModel = VeiculoModel(
@@ -73,48 +94,72 @@ class VeiculoServiceTest {
                 cor = "Blue",
                 modelo = "Caisara"
         )
-Mockito.`when`(veiculoRepository.deleteById(id))
 
-        assertEquals(id, id)
-// TESTE CRIADO COM LÓGICA ERRADA
-
-    }
+        Mockito.verify(veiculoRepository).delete(veiculoModel)
 
 
+        val res = veiculoService.deleteById(id)
 
-    @Test
-
-    // CONTAR VEICULOS DENTRO DO ESTACIONAMENTO
-    fun `count the veiculos on the alocadora`(){
-
-        Mockito.`when`(veiculoRepository.count()).thenReturn(Long.MAX_VALUE)
-
+        assertEquals(id, veiculoModel.id)
+        assertEquals("Bike", veiculoModel.automovel)
+        assertEquals("Blue", veiculoModel.cor)
+        assertEquals("Caisara", veiculoModel.modelo)
 
 
     }
-
-    @Test
-    fun `update my veiculo`(){
-
-        val id = 1
-        val veiculoModel = VeiculoModel(
-                id = id,
-                automovel = "caminhao",
-                cor = "white",
-                modelo = "volvo"
-        )
-
-        Mockito.`when`(veiculoRepository.save(veiculoModel)).thenReturn(veiculoModel)
-
-        val resposta = veiculoService.alterById(id, veiculoModel)
-
-        assertEquals(id, resposta.id)
-        assertEquals("caminhao", resposta.automovel)
-        assertEquals("white", resposta.cor)
-        assertEquals("volvo", resposta.modelo)
-    }
-
 }
+
+
+
+
+
+//    // CONTAR VEICULOS DENTRO DO ESTACIONAMENTO
+//    fun `count the veiculos on the alocadora`(){
+//
+//        val id = 16
+//        val veiculoModel = VeiculoModel(
+//                id = id,
+//                automovel = "a",
+//                cor = "b",
+//                modelo = "c"
+//        )
+//
+//        Mockito.`when`(veiculoRepository.count()).thenReturn(5)
+//
+//        val res = veiculoService.count()
+//
+
+
+
+
+
+
+
+
+
+
+//    @Test
+//    fun `update my veiculo`(){
+//
+//        val id = 1
+//        val veiculoModel = VeiculoModel(
+//                id = id,
+//                automovel = "caminhao",
+//                cor = "white",
+//                modelo = "volvo"
+//        )
+//
+//        Mockito.`when`(veiculoRepository.save(veiculoModel)).thenReturn(veiculoModel)
+//
+//        val resposta = veiculoService.alterById(id, veiculoModel)
+//
+//        assertEquals(id, resposta.id)
+//        assertEquals("caminhao", resposta.automovel)
+//        assertEquals("white", resposta.cor)
+//        assertEquals("volvo", resposta.modelo)
+//    }
+
+
 
 
 
